@@ -10,6 +10,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/Calc/**/site/cobertura/coverage.xml'
+    pathToSources: '$(System.DefaultWorkingDirectory)/Calc/src/main/java/'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/Calc/**/site/cobertura'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
